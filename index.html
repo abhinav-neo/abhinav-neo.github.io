@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abhinav Taduka — Senior Architect & Platform Leader</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-base:     #0a0a0c;
+  --bg-1:        #111114;
+  --bg-2:        #17171b;
+  --bg-3:        #1e1e24;
+  --bg-4:        #26262e;
+  --border:      rgba(255,255,255,0.07);
+  --border-gold: rgba(196,158,72,0.35);
+  --text-1:      #f0ede6;
+  --text-2:      #9d9a94;
+  --text-3:      #5e5c58;
+  --gold:        #c49e48;
+  --gold-dim:    #8a6e30;
+  --gold-bright: #e8c06a;
+  --gold-glow:   rgba(196,158,72,0.12);
+  --teal:        #3a8a82;
+  --teal-dim:    rgba(58,138,130,0.15);
+  --red:         #c0442a;
+  --red-dim:     rgba(192,68,42,0.15);
+  --serif:       'Playfair Display', Georgia, serif;
+  --sans:        'Outfit', sans-serif;
+  --mono:        'IBM Plex Mono', monospace;
+  --radius:      4px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg-base);
+  color: var(--text-1);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg-base); }
+::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
+
+/* ── GRAIN OVERLAY ── */
+body::after {
+  content: '';
+  position: fixed; inset: 0; z-index: 9999; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  opacity: 0.6;
+}
+
+/* ── KEYFRAMES ── */
+@keyframes fadeUp   { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:none; } }
+@keyframes fadeIn   { from { opacity:0; } to { opacity:1; } }
+@keyframes shimmer  { 0%,100% { opacity:.6; } 50% { opacity:1; } }
+@keyframes lineGrow { from { transform:scaleX(0); } to { transform:scaleX(1); } }
+@keyframes dotPulse { 0%,100% { box-shadow:0 0 0 0 rgba(196,158,72,0); } 50% { box-shadow:0 0 0 6px rgba(196,158,72,0.15); } }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 4rem;
+  height: 64px;
+  background: rgba(10,10,12,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: var(--serif); font-size: 1.05rem; font-weight: 500;
+  color: var(--text-1); text-decoration: none; letter-spacing: 0.02em;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.nav-logo-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--gold); animation: dotPulse 2.5s ease infinite;
+}
+.nav-links { display: flex; gap: 0; list-style: none; }
+.nav-links a {
+  display: block; padding: 0 1.1rem; height: 64px; line-height: 64px;
+  font-size: 0.68rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text-2); text-decoration: none; transition: color .2s;
+  border-right: 1px solid var(--border); position: relative;
+}
+.nav-links li:first-child a { border-left: 1px solid var(--border); }
+.nav-links a::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: var(--gold); transform: scaleX(0); transform-origin: center;
+  transition: transform .25s ease;
+}
+.nav-links a:hover { color: var(--text-1); }
+.nav-links a:hover::after { transform: scaleX(1); }
+.nav-status {
+  display: flex; align-items: center; gap: 0.55rem;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--teal);
+}
+.nav-status::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--teal); animation: shimmer 2s ease infinite;
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: grid; grid-template-columns: 1fr 420px;
+  padding-top: 64px; position: relative; overflow: hidden;
+}
+
+/* geometric bg lines */
+.hero::before {
+  content: ''; position: absolute; inset: 0; z-index: 0;
+  background-image:
+    linear-gradient(rgba(196,158,72,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(196,158,72,0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse at 60% 40%, black 20%, transparent 70%);
+}
+
+.hero-left {
+  position: relative; z-index: 2;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 6rem 5rem 6rem 4.5rem;
+}
+.hero-overline {
+  display: flex; align-items: center; gap: 1rem;
+  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 2rem;
+  animation: fadeUp 0.8s 0.1s ease both;
+}
+.hero-overline-line {
+  width: 40px; height: 1px; background: var(--gold); animation: lineGrow 0.6s ease both;
+}
+.hero-name {
+  font-family: var(--serif); font-size: clamp(4rem, 5.5vw, 6.5rem);
+  font-weight: 400; line-height: 1.0; letter-spacing: -0.02em;
+  margin-bottom: 0.4rem; animation: fadeUp 0.8s 0.2s ease both;
+  color: var(--text-1);
+}
+.hero-name span { display: block; }
+.hero-name em { font-style: italic; color: var(--gold); }
+.hero-divider {
+  width: 100%; height: 1px; background: linear-gradient(to right, var(--gold-dim), transparent);
+  margin: 1.5rem 0; animation: lineGrow 0.8s 0.35s ease both;
+}
+.hero-title {
+  font-family: var(--sans); font-size: 1.05rem; font-weight: 300;
+  color: var(--text-2); line-height: 1.65; max-width: 520px;
+  margin-bottom: 2.5rem; animation: fadeUp 0.8s 0.3s ease both;
+}
+.hero-title strong { color: var(--text-1); font-weight: 500; }
+
+.hero-stats {
+  display: flex; gap: 0; margin-bottom: 3rem;
+  border: 1px solid var(--border); width: fit-content;
+  animation: fadeUp 0.8s 0.4s ease both;
+}
+.hstat {
+  padding: 1.1rem 2rem; border-right: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: 3px;
+}
+.hstat:last-child { border-right: none; }
+.hstat-n {
+  font-family: var(--serif); font-size: 2.5rem; font-weight: 500;
+  line-height: 1; color: var(--gold);
+}
+.hstat-l {
+  font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--text-3);
+}
+
+.hero-ctas { display: flex; gap: 1rem; animation: fadeUp 0.8s 0.5s ease both; }
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: var(--sans); font-size: 0.72rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase; padding: 0.9rem 2rem;
+  text-decoration: none; transition: all 0.2s; cursor: pointer; border: none;
+  position: relative; overflow: hidden;
+}
+.btn-gold {
+  background: var(--gold); color: var(--bg-base);
+}
+.btn-gold::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.15), transparent);
+  transform: translateX(-100%); transition: transform 0.5s;
+}
+.btn-gold:hover::after { transform: translateX(100%); }
+.btn-gold:hover { background: var(--gold-bright); transform: translateY(-2px); }
+.btn-ghost {
+  background: transparent; color: var(--text-2);
+  border: 1px solid var(--border);
+}
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+/* HERO RIGHT */
+.hero-right {
+  position: relative; z-index: 2;
+  border-left: 1px solid var(--border);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 3rem;
+  background: linear-gradient(to bottom, transparent, rgba(196,158,72,0.03));
+}
+
+.hero-card {
+  background: var(--bg-2); border: 1px solid var(--border);
+  padding: 1.4rem; margin-bottom: 1px; position: relative;
+  transition: border-color 0.2s, background 0.2s;
+}
+.hero-card:hover { border-color: var(--border-gold); background: var(--bg-3); }
+.hero-card-label {
+  font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem;
+}
+.hero-card-val { font-size: 0.85rem; color: var(--text-1); line-height: 1.5; font-weight: 400; }
+.hero-card-val em { color: var(--text-2); font-style: normal; font-size: 0.78rem; }
+
+.hero-quote-block {
+  border-left: 2px solid var(--gold); padding: 1.25rem 1.25rem;
+  margin-top: 1.5rem; background: var(--gold-glow);
+}
+.hero-quote {
+  font-family: var(--serif); font-size: 1.1rem; font-style: italic;
+  color: var(--text-1); line-height: 1.6; margin-bottom: 0.5rem;
+}
+.hero-quote-attr { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.1em; color: var(--text-3); }
+
+/* ── SECTION BASE ── */
+section { padding: 6rem 0; border-top: 1px solid var(--border); }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 4.5rem; }
+
+.sec-label {
+  display: flex; align-items: center; gap: 1rem;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem;
+}
+.sec-label::before {
+  content: ''; width: 24px; height: 1px;
+  background: var(--gold);
+}
+.sec-title {
+  font-family: var(--serif); font-size: clamp(2.2rem, 3vw, 3.2rem);
+  font-weight: 400; line-height: 1.15; margin-bottom: 3rem;
+  color: var(--text-1);
+}
+.sec-title em { font-style: italic; color: var(--gold); }
+
+/* ── EXPERTISE ── */
+.expertise-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
+.exp-card {
+  background: var(--bg-1); padding: 2.25rem 2rem;
+  transition: background 0.2s; position: relative; overflow: hidden;
+}
+.exp-card::before {
+  content: attr(data-n);
+  position: absolute; top: -0.5rem; right: 1rem;
+  font-family: var(--serif); font-size: 5rem; font-weight: 700;
+  color: rgba(196,158,72,0.04); line-height: 1; pointer-events: none;
+  user-select: none;
+}
+.exp-card::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--gold); transform: scaleX(0); transform-origin: left;
+  transition: transform 0.35s ease;
+}
+.exp-card:hover { background: var(--bg-2); }
+.exp-card:hover::after { transform: scaleX(1); }
+.exp-icon {
+  width: 40px; height: 40px; border: 1px solid var(--border-gold);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; margin-bottom: 1.25rem; background: var(--gold-glow);
+}
+.exp-name { font-size: 0.88rem; font-weight: 600; letter-spacing: 0.02em; margin-bottom: 0.75rem; color: var(--text-1); }
+.exp-desc { font-size: 0.8rem; color: var(--text-2); line-height: 1.8; margin-bottom: 1rem; }
+.exp-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.etag {
+  font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.05em;
+  padding: 0.2rem 0.6rem; background: var(--bg-3); color: var(--text-3);
+  border: 1px solid var(--border);
+}
+
+/* ── TIMELINE ── */
+.timeline-sec { background: var(--bg-base); }
+.timeline { display: flex; flex-direction: column; gap: 0; }
+
+.tj {
+  display: grid; grid-template-columns: 200px 1fr;
+  border-bottom: 1px solid var(--border); position: relative;
+  transition: background 0.2s;
+}
+.tj:last-child { border-bottom: none; }
+.tj:hover { background: rgba(196,158,72,0.02); }
+
+.tj-left {
+  padding: 2.25rem 2rem 2.25rem 0; border-right: 1px solid var(--border);
+  position: relative;
+}
+.tj-left::before {
+  content: ''; position: absolute; right: -4px; top: 2.6rem;
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--bg-base); border: 1.5px solid var(--gold);
+}
+.tj-period {
+  font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.08em;
+  color: var(--text-3); margin-bottom: 0.5rem; line-height: 1.4;
+}
+.tj-co {
+  font-size: 0.78rem; font-weight: 600; color: var(--gold);
+  letter-spacing: 0.04em; margin-bottom: 0.3rem;
+}
+.tj-domain {
+  display: inline-block; font-family: var(--mono); font-size: 0.52rem;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 0.18rem 0.6rem; background: var(--bg-3);
+  color: var(--teal); border: 1px solid rgba(58,138,130,0.25);
+  margin-top: 0.75rem;
+}
+
+.tj-right { padding: 2.25rem 0 2.25rem 2.5rem; }
+.tj-role {
+  font-family: var(--serif); font-size: 1.4rem; font-weight: 400;
+  color: var(--text-1); margin-bottom: 0.35rem; line-height: 1.2;
+}
+.tj-project {
+  font-size: 0.78rem; color: var(--text-3); margin-bottom: 1.1rem;
+  font-style: italic; padding-left: 0.9rem; border-left: 2px solid var(--border);
+}
+.tj-pts { list-style: none; display: flex; flex-direction: column; gap: 0; }
+.tj-pts li {
+  font-size: 0.81rem; color: var(--text-2); line-height: 1.75;
+  padding: 0.55rem 0 0.55rem 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.04);
+  position: relative;
+}
+.tj-pts li:last-child { border-bottom: none; }
+.tj-pts li::before { content: '—'; position: absolute; left: 0; color: var(--gold-dim); }
+
+/* ── WRITING ── */
+.writing-sec { background: var(--bg-1); }
+.pub-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
+.pub-card {
+  background: var(--bg-1); padding: 2rem 1.75rem;
+  text-decoration: none; display: flex; flex-direction: column;
+  transition: background 0.2s; position: relative; overflow: hidden;
+}
+.pub-card::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: var(--gold); transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.pub-card:hover { background: var(--bg-2); }
+.pub-card:hover::after { transform: scaleX(1); }
+.pub-date {
+  font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.12em;
+  color: var(--text-3); margin-bottom: 0.9rem;
+}
+.pub-title {
+  font-family: var(--serif); font-size: 1.05rem; font-weight: 400;
+  color: var(--text-1); line-height: 1.45; flex: 1; margin-bottom: 1.25rem;
+}
+.pub-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; }
+.pub-tag {
+  font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.08em;
+  text-transform: uppercase; padding: 0.2rem 0.65rem;
+  background: var(--gold-glow); color: var(--gold);
+  border: 1px solid var(--border-gold);
+}
+.pub-arrow { color: var(--text-3); font-size: 1rem; transition: color 0.2s, transform 0.2s; }
+.pub-card:hover .pub-arrow { color: var(--gold); transform: translate(3px,-3px); }
+
+/* ── TECH STACK ── */
+.tech-sec { background: var(--bg-base); }
+.tech-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
+.tech-card {
+  background: var(--bg-1); padding: 1.75rem 1.5rem;
+  transition: background 0.2s;
+}
+.tech-card:hover { background: var(--bg-2); }
+.tech-cat {
+  font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 1rem;
+  padding-bottom: 0.75rem; border-bottom: 1px solid var(--border);
+}
+.tech-items { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.ti {
+  font-family: var(--mono); font-size: 0.57rem; letter-spacing: 0.04em;
+  padding: 0.28rem 0.7rem; background: var(--bg-3); color: var(--text-2);
+  border: 1px solid var(--border); transition: all 0.15s; cursor: default;
+}
+.ti:hover { background: var(--gold-glow); border-color: var(--border-gold); color: var(--gold); }
+
+/* ── PROJECTS ── */
+.projects-sec { background: var(--bg-1); }
+.proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); }
+.proj-card {
+  background: var(--bg-1); padding: 2rem 1.85rem;
+  display: flex; flex-direction: column; gap: 0.85rem;
+  position: relative; overflow: hidden;
+  transition: background 0.2s;
+}
+.proj-card:hover { background: var(--bg-2); }
+.proj-card::before {
+  content: attr(data-n);
+  position: absolute; bottom: -1rem; right: 0.5rem;
+  font-family: var(--serif); font-size: 6rem; font-weight: 700;
+  color: rgba(196,158,72,0.04); line-height: 1; pointer-events: none;
+}
+.proj-hdr { display: flex; justify-content: space-between; align-items: center; }
+.proj-num {
+  font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.12em;
+  color: var(--text-3);
+}
+.proj-icon {
+  width: 34px; height: 34px; border: 1px solid var(--border-gold);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; background: var(--gold-glow);
+}
+.proj-name { font-size: 0.93rem; font-weight: 600; color: var(--text-1); }
+.proj-sub { font-size: 0.79rem; color: var(--text-2); line-height: 1.75; }
+.proj-stack { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.ptag {
+  font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.05em;
+  padding: 0.2rem 0.6rem; background: var(--teal-dim); color: var(--teal);
+  border: 1px solid rgba(58,138,130,0.25);
+}
+.proj-impact {
+  font-family: var(--mono); font-size: 0.53rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--gold-dim);
+  padding-top: 0.65rem; border-top: 1px solid var(--border);
+  margin-top: auto;
+}
+
+/* ── EDUCATION ── */
+.edu-sec { background: var(--bg-base); }
+.edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+.edu-head {
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem; border-bottom: 1px solid var(--border);
+}
+.edu-item {
+  padding: 1.25rem 1.5rem; background: var(--bg-2);
+  border: 1px solid var(--border); border-left: 2px solid var(--gold-dim);
+  margin-bottom: 0.75rem; transition: border-color 0.2s;
+}
+.edu-item:hover { border-left-color: var(--gold); }
+.edu-deg { font-size: 0.85rem; font-weight: 600; color: var(--text-1); margin-bottom: 0.25rem; }
+.edu-inst { font-family: var(--mono); font-size: 0.57rem; letter-spacing: 0.06em; color: var(--text-3); }
+.cert-item {
+  padding: 1.25rem 1.5rem; background: var(--bg-2);
+  border: 1px solid var(--border-gold); margin-bottom: 0.75rem;
+  position: relative; overflow: hidden; transition: background 0.2s;
+}
+.cert-item:hover { background: var(--bg-3); }
+.cert-item::before {
+  content: '✦'; position: absolute; top: 0.85rem; right: 1rem;
+  color: var(--gold); font-size: 0.7rem; opacity: 0.5;
+}
+.cert-name { font-size: 0.84rem; font-weight: 600; color: var(--text-1); margin-bottom: 0.3rem; line-height: 1.4; }
+.cert-inst { font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.06em; color: var(--gold-dim); }
+
+/* ── CONTACT ── */
+.contact-sec { background: var(--bg-1); }
+.contact-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+  align-items: center;
+}
+.contact-text {}
+.contact-sub {
+  font-family: var(--serif); font-size: 1rem; font-style: italic;
+  color: var(--text-2); line-height: 1.8; margin-bottom: 2.5rem;
+}
+.contact-links { display: flex; flex-direction: column; gap: 0; }
+.cl {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.1rem 1.5rem;
+  border: 1px solid var(--border); border-bottom: none;
+  text-decoration: none; transition: all 0.2s;
+  font-family: var(--mono); font-size: 0.62rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-2);
+}
+.cl:last-child { border-bottom: 1px solid var(--border); }
+.cl:hover { background: var(--gold-glow); border-color: var(--border-gold); color: var(--gold); }
+.cl-arrow { transition: transform 0.2s; }
+.cl:hover .cl-arrow { transform: translate(4px,-4px); }
+
+.contact-card {
+  background: var(--bg-2); border: 1px solid var(--border-gold);
+  padding: 2.5rem; position: relative; overflow: hidden;
+}
+.contact-card::before {
+  content: ''; position: absolute;
+  top: -40px; right: -40px; width: 120px; height: 120px;
+  border-radius: 50%; background: var(--gold-glow);
+}
+.contact-card-label {
+  font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem;
+}
+.contact-card-name {
+  font-family: var(--serif); font-size: 2rem; font-weight: 400;
+  color: var(--text-1); margin-bottom: 0.5rem; line-height: 1.2;
+}
+.contact-card-title {
+  font-size: 0.82rem; color: var(--text-2); margin-bottom: 2rem; line-height: 1.55;
+}
+.contact-detail { display: flex; flex-direction: column; gap: 0.6rem; }
+.cd-row {
+  display: flex; align-items: center; gap: 0.85rem;
+  font-size: 0.78rem; color: var(--text-2);
+}
+.cd-icon {
+  width: 28px; height: 28px; border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem; background: var(--bg-3); flex-shrink: 0;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--bg-base); border-top: 1px solid var(--border);
+  padding: 1.5rem 4.5rem; display: flex; justify-content: space-between; align-items: center;
+}
+.fc { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.08em; color: var(--text-3); }
+.fb { font-family: var(--mono); font-size: 0.54rem; letter-spacing: 0.09em; padding: 0.28rem 0.75rem; background: var(--gold-glow); color: var(--gold); border: 1px solid var(--border-gold); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 960px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-right { border-left: none; border-top: 1px solid var(--border); min-height: auto; }
+  nav { padding: 0 1.5rem; }
+  .nav-links { display: none; }
+  .hero-left { padding: 4rem 1.5rem; }
+  .container { padding: 0 1.5rem; }
+  .expertise-grid, .pub-grid, .tech-grid, .proj-grid, .edu-grid { grid-template-columns: 1fr; }
+  .tj { grid-template-columns: 1fr; }
+  .tj-left { border-right: none; border-bottom: 1px solid var(--border); padding: 1.5rem 0; }
+  .tj-right { padding: 1.5rem 0; }
+  .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  footer { flex-direction: column; gap: 0.75rem; text-align: center; padding: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <span class="nav-logo-dot"></span>
+    Abhinav Taduka
+  </a>
+  <ul class="nav-links">
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#writing">Writing</a></li>
+    <li><a href="#tech">Tech Stack</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-status">Available for senior roles</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-overline">
+      <div class="hero-overline-line"></div>
+      Senior Architect &amp; Platform Leader
+    </div>
+    <h1 class="hero-name">
+      <span>Abhinav</span>
+      <span><em>Taduka</em></span>
+    </h1>
+    <div class="hero-divider"></div>
+    <p class="hero-title">
+      Two decades architecting <strong>mission-critical distributed systems</strong> across fintech, payments, and government — from statewide healthcare exchanges to high-throughput financial processing platforms.
+    </p>
+    <div class="hero-stats">
+      <div class="hstat">
+        <span class="hstat-n">21+</span>
+        <span class="hstat-l">Years</span>
+      </div>
+      <div class="hstat">
+        <span class="hstat-n">10+</span>
+        <span class="hstat-l">Orgs</span>
+      </div>
+      <div class="hstat">
+        <span class="hstat-n">1k+</span>
+        <span class="hstat-l">Followers</span>
+      </div>
+      <div class="hstat">
+        <span class="hstat-n">2</span>
+        <span class="hstat-l">Certs</span>
+      </div>
+    </div>
+    <div class="hero-ctas">
+      <a href="https://www.linkedin.com/in/abhinavtaduka/" target="_blank" class="btn btn-gold">LinkedIn Profile →</a>
+      <a href="https://medium.com/@abhinav.neo" target="_blank" class="btn btn-ghost">Read Writing</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-card">
+      <div class="hero-card-label">Current Position</div>
+      <div class="hero-card-val">Senior Architect, Lead — Operations Technology<br><em>iCreditWorks · Aug 2021 – Present · McKinney, TX</em></div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-label">Domains</div>
+      <div class="hero-card-val">Fintech &amp; Payments · Government Eligibility<br>Cloud Architecture · AI Integration</div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-label">Certifications</div>
+      <div class="hero-card-val">Certified Software Architecture Professional (SAP)<br><em>SEI · Carnegie Mellon University</em></div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-label">Academic Credential</div>
+      <div class="hero-card-val">Executive Programme in Algorithmic Trading<br><em>QuantInsti · M.Sc Information Systems</em></div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-label">Location</div>
+      <div class="hero-card-val">McKinney, Texas, United States<br><em>abhinav.taduka@gmail.com</em></div>
+    </div>
+    <div class="hero-quote-block">
+      <div class="hero-quote">"AI doesn't fail in notebooks. It fails in production."</div>
+      <div class="hero-quote-attr">— from medium.com/@abhinav.neo</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERTISE -->
+<section id="expertise">
+  <div class="container">
+    <div class="sec-label">Core Competencies</div>
+    <h2 class="sec-title">What I <em>architect</em></h2>
+    <div class="expertise-grid">
+      <div class="exp-card" data-n="01">
+        <div class="exp-icon">🏛️</div>
+        <div class="exp-name">Architecture &amp; Platform Leadership</div>
+        <div class="exp-desc">Senior Architect with extensive experience designing and owning large-scale, mission-critical platforms. Defines long-term technical direction at org level, governs reference architectures, and mentors senior engineers across distributed teams.</div>
+        <div class="exp-tags"><span class="etag">Domain-Driven Design</span><span class="etag">Ref Architectures</span><span class="etag">ADRs</span><span class="etag">Governance</span></div>
+      </div>
+      <div class="exp-card" data-n="02">
+        <div class="exp-icon">☁️</div>
+        <div class="exp-name">Cloud, DevOps &amp; Modernization</div>
+        <div class="exp-desc">Led on-prem to AWS migrations, microservices decompositions, container orchestration, and CI/CD automation. Delivered cost-optimized, resilient cloud-native systems through infrastructure-as-code and DevOps best practices.</div>
+        <div class="exp-tags"><span class="etag">AWS</span><span class="etag">Kubernetes</span><span class="etag">Docker</span><span class="etag">Ansible</span><span class="etag">Jenkins</span></div>
+      </div>
+      <div class="exp-card" data-n="03">
+        <div class="exp-icon">💳</div>
+        <div class="exp-name">Payments, Integration &amp; Fintech</div>
+        <div class="exp-desc">Deep hands-on experience with ACH, credit cards, virtual cards, ESBs, rules engines, and enterprise messaging. Designed reconciliation frameworks and secure service contracts ensuring regulatory compliance in high-volume financial environments.</div>
+        <div class="exp-tags"><span class="etag">ACH</span><span class="etag">Virtual Card</span><span class="etag">MuleSoft</span><span class="etag">IBM ODM</span><span class="etag">Reconciliation</span></div>
+      </div>
+      <div class="exp-card" data-n="04">
+        <div class="exp-icon">📡</div>
+        <div class="exp-name">Reliability, Observability &amp; Performance</div>
+        <div class="exp-desc">Established enterprise-grade observability using Splunk, ELK, and Prometheus. Led performance engineering and load testing with JMeter and Gatling, improving system reliability and production readiness at high transaction volumes.</div>
+        <div class="exp-tags"><span class="etag">Splunk</span><span class="etag">ELK</span><span class="etag">Prometheus</span><span class="etag">JMeter</span><span class="etag">Gatling</span></div>
+      </div>
+      <div class="exp-card" data-n="05">
+        <div class="exp-icon">🏥</div>
+        <div class="exp-name">Government &amp; Healthcare Eligibility</div>
+        <div class="exp-desc">Architected statewide healthcare exchange platforms under HIPAA, ACA, and CMS regulatory mandates serving millions of citizens. Led eligibility systems integrating 14+ state agencies for real-time eligibility determination.</div>
+        <div class="exp-tags"><span class="etag">HIPAA</span><span class="etag">ACA</span><span class="etag">CMS</span><span class="etag">Medicaid</span><span class="etag">SNAP</span></div>
+      </div>
+      <div class="exp-card" data-n="06">
+        <div class="exp-icon">🤖</div>
+        <div class="exp-name">AI Innovation &amp; Emerging Technologies</div>
+        <div class="exp-desc">Driving AI-driven automation research and production integration using LangChain, Ollama, and LLM APIs. Applying enterprise Java architecture expertise to bridge the gap between AI experimentation and regulated production deployment.</div>
+        <div class="exp-tags"><span class="etag">LangChain</span><span class="etag">Ollama</span><span class="etag">Spring AI</span><span class="etag">LLM APIs</span><span class="etag">RAG</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="timeline-sec" id="experience">
+  <div class="container">
+    <div class="sec-label">Career History</div>
+    <h2 class="sec-title">Two decades of <em>impact</em></h2>
+    <div class="timeline">
+
+      <div class="tj">
+        <div class="tj-left">
+          <div class="tj-period">Aug 2021 – Present</div>
+          <div class="tj-co">iCreditWorks</div>
+          <div class="tj-domain">Fintech · Payments</div>
+        </div>
+        <div class="tj-right">
+          <div class="tj-role">Senior Architect, Lead – Operations Technology</div>
+          <div class="tj-project">Mobile-based digital lending &amp; payment processing platform — end-to-end loan origination, servicing, and repayment for healthcare financing across multiple payment networks.</div>
+          <ul class="tj-pts">
+            <li>Standardized payment integration patterns across ACH, credit card, and virtual card flows; reduced reconciliation risk across heterogeneous payment networks</li>
+            <li>Defined reusable microservices framework adopted as architectural baseline across multiple platform services, influencing service design, security, and deployment org-wide</li>
+            <li>Guided cloud-native architecture decisions under strict availability and compliance requirements; established scalable cloud patterns supporting long-term platform growth</li>
+            <li>Defined observability standards across distributed systems using modern APM stacks; improved production readiness at high transaction volumes</li>
+            <li>Led AI research and responsible adoption of AI-driven automation within regulated financial systems</li>
+            <li>Served as principal technical authority on high-impact architectural decisions; mentored senior engineers and architects</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tj">
+        <div class="tj-left">
+          <div class="tj-period">Oct 2020 – Jul 2021</div>
+          <div class="tj-co">Pitney Bowes</div>
+          <div class="tj-domain">Enterprise SaaS · Cloud</div>
+        </div>
+        <div class="tj-right">
+          <div class="tj-role">Technical Architect / Full Stack Developer</div>
+          <div class="tj-project">SendPro Anywhere — cloud-based shipping and mailing platform supporting multi-carrier logistics management and label generation.</div>
+          <ul class="tj-pts">
+            <li>Conducted feasibility analysis and strategic planning for migrating core Java components to Golang; designed and evaluated multiple POC implementations</li>
+            <li>Delivered full-stack services in Golang and Java with Angular frontend; automated CI/CD pipelines using AWS, Docker, Kubernetes, and Ansible</li>
+            <li>Configured production monitoring and alerting with SumoLogic and Prometheus</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tj">
+        <div class="tj-left">
+          <div class="tj-period">Mar 2020 – Sep 2020</div>
+          <div class="tj-co">Covered California</div>
+          <div class="tj-domain">Government · ACA · Healthcare</div>
+        </div>
+        <div class="tj-right">
+          <div class="tj-role">Senior Architect</div>
+          <div class="tj-project">CalHEERS — California Healthcare Eligibility &amp; Enrollment System, statewide ACA health insurance exchange serving millions of California residents.</div>
+          <ul class="tj-pts">
+            <li>Designed and implemented a comprehensive APM and observability framework using Splunk across the statewide platform</li>
+            <li>Authored multi-year technology refresh and target-state architecture plan; led cloud migration to AWS</li>
+            <li>Designed reusable microservices framework using Spring Boot and Netflix OSS; led system-wide performance testing with JMeter and Gatling</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tj">
+        <div class="tj-left">
+          <div class="tj-period">Jan 2020 – Mar 2020</div>
+          <div class="tj-co">Ocado</div>
+          <div class="tj-domain">Enterprise Integration · ERP</div>
+        </div>
+        <div class="tj-right">
+          <div class="tj-role">Integration Architect / Framework Lead</div>
+          <div class="tj-project">Oracle Procurement System Integration — connecting Oracle ERP with Ocado's robotic warehouse management system for near real-time inventory and order data exchange.</div>
+          <ul class="tj-pts">
+            <li>Designed end-to-end microservices architecture integrating heterogeneous enterprise systems using Netflix OSS</li>
+            <li>Established scalable reference architecture and standardized service design patterns; defined CI/CD and cloud migration practices</li>
+            <li>Implemented production-grade observability with centralized logging and alerting using ELK and Prometheus</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tj">
+        <div class="tj-left">
+          <div class="tj-period">Oct 2012 – Dec 2019<br>7+ years</div>
+          <div class="tj-co">State of Rhode Island</div>
+          <div class="tj-domain">Government · Eligibility</div>
+        </div>
+        <div class="tj-right">
+          <div class="tj-role">Integration Architect / Technical Architect</div>
+          <div class="tj-project">UHIP — Unified Health Infrastructure Platform consolidating Medicaid, SNAP, TANF, and ACA exchange programs across Rhode Island state agencies serving hundreds of thousands of citizens.</div>
+          <ul class="tj-pts">
+            <li>Architected end-to-end production monitoring and observability framework using Splunk, Zabbix, and JVisualVM across the statewide platform</li>
+            <li>Led design and implementation of full-scale Enterprise Service Bus architecture using MuleSoft, connecting 14+ state agency data sources</li>
+            <li>Translated complex regulatory requirements into well-defined technical service contracts with security, resilience, and compliance built in</li>
+            <li>Led in-depth database performance analysis using AWR reports; designed HIX portal for ACA-compliant healthcare enrollment</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tj">
+        <div class="tj-left">
+          <div class="tj-period">Dec 2011 – Oct 2012</div>
+          <div class="tj-co">Bank of America</div>
+          <div class="tj-domain">Banking · Rules Engine</div>
+        </div>
+        <div class="tj-right">
+          <div class="tj-role">Technical Architect</div>
+          <div class="tj-project">Late Charges Enterprise Rules Engine — centralizing fee calculation and eligibility rules for loan and credit card accounts across multiple financial products.</div>
+          <ul class="tj-pts">
+            <li>Led requirements analysis and translated business requirements into HLD/LLD; developed complex business rules using IBM JRules</li>
+            <li>Built Java integration layers between application components and rules engine; ensured SOA principles and security guidelines adherence</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tj">
+        <div class="tj-left">
+          <div class="tj-period">Jan 2011 – Nov 2011</div>
+          <div class="tj-co">Adobe Inc.</div>
+          <div class="tj-domain">eCommerce · Integration</div>
+        </div>
+        <div class="tj-right">
+          <div class="tj-role">Integration Lead / Senior Developer</div>
+          <div class="tj-project">Cayanne eCommerce Platform — Adobe's digital commerce platform supporting product purchasing, subscription management, and entitlements at enterprise scale. San Jose, CA.</div>
+          <ul class="tj-pts">
+            <li>Designed and implemented REST-based integration framework with abstract service layer decoupling frontend and downstream systems</li>
+            <li>Led development teams in building web services; evaluated alternative integration technologies and conducted performance testing with JMeter</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tj">
+        <div class="tj-left">
+          <div class="tj-period">2003 – 2010</div>
+          <div class="tj-co">Earlier Roles</div>
+          <div class="tj-domain">LDS · Walmart · LendingSpace</div>
+        </div>
+        <div class="tj-right">
+          <div class="tj-role">Senior Developer → Team Lead</div>
+          <div class="tj-project">Financial systems, procurement platforms, and mortgage loan origination across LDS Church (Salt Lake City), Walmart (Bentonville), and LendingSpace.</div>
+          <ul class="tj-pts">
+            <li>LDS Church (2008–2010): Church Unit Banking System — performance engineering, web services, financial reconciliation and reusable component development</li>
+            <li>Walmart (2007–2008): SMAC procurement platform — performance tuning, UI/backend integration, enterprise procurement compliance web services</li>
+            <li>LendingSpace (2003–2006): Team Lead on mortgage loan origination platform — technology evaluation, integration components, reusable frameworks</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WRITING -->
+<section class="writing-sec" id="writing">
+  <div class="container">
+    <div class="sec-label">Published on Medium</div>
+    <h2 class="sec-title">Thoughts on <em>craft</em></h2>
+    <div class="pub-grid">
+      <a href="https://medium.com/@abhinav.neo/what-standards-matter-in-the-age-of-ai-assisted-development-fc9f52f9dc41" target="_blank" class="pub-card">
+        <div class="pub-date">Feb 2025</div>
+        <div class="pub-title">What standards matter in the age of AI-assisted development?</div>
+        <div class="pub-footer"><span class="pub-tag">AI · Standards</span><span class="pub-arrow">↗</span></div>
+      </a>
+      <a href="https://medium.com/@abhinav.neo/python-is-the-most-popular-language-for-ai-but-mostly-where-ai-is-born-not-where-it-lives-196140083ea7" target="_blank" class="pub-card">
+        <div class="pub-date">Feb 2025</div>
+        <div class="pub-title">Python Is Popular for AI — But Mostly Where AI Is Born, Not Where It Lives</div>
+        <div class="pub-footer"><span class="pub-tag">Java · AI · Production</span><span class="pub-arrow">↗</span></div>
+      </a>
+      <a href="https://medium.com/@abhinav.neo/is-ai-actually-making-software-developers-better-23fd9e56492d" target="_blank" class="pub-card">
+        <div class="pub-date">Feb 2025</div>
+        <div class="pub-title">Is AI Actually Making Software Developers Better?</div>
+        <div class="pub-footer"><span class="pub-tag">AI · Engineering</span><span class="pub-arrow">↗</span></div>
+      </a>
+      <a href="https://medium.com/@abhinav.neo/exploring-java-in-ai-and-machine-learning-a-comprehensive-overview-fc89ae968893" target="_blank" class="pub-card">
+        <div class="pub-date">Mar 2025</div>
+        <div class="pub-title">Exploring Java in AI and Machine Learning: A Comprehensive Overview</div>
+        <div class="pub-footer"><span class="pub-tag">Java · ML</span><span class="pub-arrow">↗</span></div>
+      </a>
+      <a href="https://medium.com/@abhinav.neo/deeplearning4j-comprehensive-overview-a6ab2d3b3cdc" target="_blank" class="pub-card">
+        <div class="pub-date">Mar 2025</div>
+        <div class="pub-title">DeepLearning4J: Comprehensive Overview for JVM Practitioners</div>
+        <div class="pub-footer"><span class="pub-tag">DL4J · Deep Learning</span><span class="pub-arrow">↗</span></div>
+      </a>
+      <a href="https://medium.com/@abhinav.neo/key-factors-in-migrating-from-on-premise-to-cloud-step-1-assess-your-current-application-e41777523a1f" target="_blank" class="pub-card">
+        <div class="pub-date">Apr 2023</div>
+        <div class="pub-title">Key Factors in Migrating from On-Premise to Cloud — Step 1: Assess Your Application</div>
+        <div class="pub-footer"><span class="pub-tag">Cloud · Migration</span><span class="pub-arrow">↗</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section class="tech-sec" id="tech">
+  <div class="container">
+    <div class="sec-label">Technology Competencies</div>
+    <h2 class="sec-title">The <em>full stack</em></h2>
+    <div class="tech-grid">
+      <div class="tech-card">
+        <div class="tech-cat">AI &amp; Modern Engineering</div>
+        <div class="tech-items">
+          <span class="ti">LangChain</span><span class="ti">Ollama</span><span class="ti">ChatGPT</span><span class="ti">Claude</span><span class="ti">Gemini</span><span class="ti">Spring AI</span><span class="ti">Golang</span><span class="ti">Python</span><span class="ti">Kafka</span><span class="ti">Microservices</span>
+        </div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-cat">Enterprise Java &amp; Frameworks</div>
+        <div class="tech-items">
+          <span class="ti">Java (Expert)</span><span class="ti">Spring Boot</span><span class="ti">Spring MVC</span><span class="ti">Spring Data/JPA</span><span class="ti">AspectJ (AOP)</span><span class="ti">JEE / EJB</span><span class="ti">IBM ODM</span><span class="ti">OPA</span>
+        </div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-cat">Cloud, DevOps &amp; Platform</div>
+        <div class="tech-items">
+          <span class="ti">AWS</span><span class="ti">GCP</span><span class="ti">OCI</span><span class="ti">Kubernetes</span><span class="ti">Docker</span><span class="ti">Ansible</span><span class="ti">Puppet</span><span class="ti">Jenkins</span><span class="ti">Bamboo</span><span class="ti">Maven</span>
+        </div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-cat">Middleware &amp; Integration</div>
+        <div class="tech-items">
+          <span class="ti">MuleSoft ESB</span><span class="ti">Apache CXF</span><span class="ti">ActiveMQ</span><span class="ti">JMS</span><span class="ti">Swagger/OpenAPI</span><span class="ti">Netflix OSS</span><span class="ti">XSLT/XPath</span><span class="ti">Pentaho ETL</span>
+        </div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-cat">Observability &amp; Performance</div>
+        <div class="tech-items">
+          <span class="ti">Splunk</span><span class="ti">ELK Stack</span><span class="ti">SumoLogic</span><span class="ti">Prometheus</span><span class="ti">Zabbix</span><span class="ti">JMeter</span><span class="ti">Gatling</span><span class="ti">JProfiler</span><span class="ti">Java Flight Recorder</span>
+        </div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-cat">Databases &amp; Storage</div>
+        <div class="tech-items">
+          <span class="ti">Oracle</span><span class="ti">PostgreSQL</span><span class="ti">MySQL</span><span class="ti">MariaDB</span><span class="ti">MS SQL Server</span><span class="ti">MongoDB</span><span class="ti">SQL Developer</span><span class="ti">TOAD</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects-sec" id="projects">
+  <div class="container">
+    <div class="sec-label">Open Source Portfolio</div>
+    <h2 class="sec-title">GitHub <em>projects</em></h2>
+    <div class="proj-grid">
+      <div class="proj-card" data-n="01">
+        <div class="proj-hdr"><span class="proj-num">01 / 06</span><span class="proj-icon">🔍</span></div>
+        <div class="proj-name">JavaRAG — Enterprise RAG Engine</div>
+        <div class="proj-sub">Production-grade Retrieval-Augmented Generation built entirely in Java/Spring Boot with pgvector. No Python dependency — first Java-native RAG system for enterprise document QA.</div>
+        <div class="proj-stack"><span class="ptag">Java</span><span class="ptag">Spring Boot</span><span class="ptag">pgvector</span><span class="ptag">OpenAI API</span></div>
+        <div class="proj-impact">Bridges enterprise Java infrastructure with production LLM capabilities</div>
+      </div>
+      <div class="proj-card" data-n="02">
+        <div class="proj-hdr"><span class="proj-num">02 / 06</span><span class="proj-icon">⚡</span></div>
+        <div class="proj-name">LLM-Gateway — Java LLM Router</div>
+        <div class="proj-sub">Unified Java API gateway routing and load balancing across 5+ LLM providers. Semantic Redis caching, circuit breakers via Resilience4j, and enterprise-grade compliance audit logs.</div>
+        <div class="proj-stack"><span class="ptag">Java</span><span class="ptag">Spring Cloud Gateway</span><span class="ptag">Redis</span><span class="ptag">Resilience4j</span></div>
+        <div class="proj-impact">Enterprise-grade LLM infrastructure — zero Python dependency</div>
+      </div>
+      <div class="proj-card" data-n="03">
+        <div class="proj-hdr"><span class="proj-num">03 / 06</span><span class="proj-icon">🛡️</span></div>
+        <div class="proj-name">SecureAI — Compliance LLM Middleware</div>
+        <div class="proj-sub">LLM middleware with PII detection, prompt injection defense, GDPR/SOC2 audit trails, and data residency routing — built on Spring Security's filter chain for regulated environments.</div>
+        <div class="proj-stack"><span class="ptag">Java</span><span class="ptag">Spring Security</span><span class="ptag">ONNX</span><span class="ptag">Elasticsearch</span></div>
+        <div class="proj-impact">20+ years of regulated-systems expertise applied to AI security</div>
+      </div>
+      <div class="proj-card" data-n="04">
+        <div class="proj-hdr"><span class="proj-num">04 / 06</span><span class="proj-icon">💳</span></div>
+        <div class="proj-name">PaymentMesh — Intelligent Payment Router</div>
+        <div class="proj-sub">AI-augmented payment routing engine using ML to optimize rail selection, detect fraud in real time, and auto-remediate failed transactions — fintech-grade compliance built in.</div>
+        <div class="proj-stack"><span class="ptag">Java</span><span class="ptag">Kafka</span><span class="ptag">ONNX</span><span class="ptag">ACH / ISO 8583</span></div>
+        <div class="proj-impact">Extends iCreditWorks payment architecture expertise to open source</div>
+      </div>
+      <div class="proj-card" data-n="05">
+        <div class="proj-hdr"><span class="proj-num">05 / 06</span><span class="proj-icon">🌊</span></div>
+        <div class="proj-name">StreamIntel — Real-Time Event AI</div>
+        <div class="proj-sub">Kafka + LLM pipeline for real-time anomaly detection and natural-language alerting on high-throughput event streams. Handles 500k events/sec with sub-200ms alert latency.</div>
+        <div class="proj-stack"><span class="ptag">Java</span><span class="ptag">Kafka</span><span class="ptag">Spring Kafka</span><span class="ptag">Prometheus</span></div>
+        <div class="proj-impact">Production observability meets AI-driven incident intelligence</div>
+      </div>
+      <div class="proj-card" data-n="06">
+        <div class="proj-hdr"><span class="proj-num">06 / 06</span><span class="proj-icon">🏛️</span></div>
+        <div class="proj-name">ArchitectBench — Design Evaluator</div>
+        <div class="proj-sub">AI-powered tool evaluating software architecture documents across 12 quality dimensions — scalability, fault tolerance, security, cost, and more — powered by structured domain expertise.</div>
+        <div class="proj-stack"><span class="ptag">Java</span><span class="ptag">Spring Boot</span><span class="ptag">GPT-4</span><span class="ptag">PlantUML</span></div>
+        <div class="proj-impact">Enterprise architecture expertise encoded as a reusable scoring engine</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="edu-sec" id="education">
+  <div class="container">
+    <div class="sec-label">Education &amp; Certifications</div>
+    <h2 class="sec-title">Academic &amp; <em>professional</em> credentials</h2>
+    <div class="edu-grid">
+      <div>
+        <div class="edu-head">Education</div>
+        <div class="edu-item">
+          <div class="edu-deg">M.Sc — Information Systems</div>
+          <div class="edu-inst">Kakatiya University · Telangana, India</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-deg">PGDBA — Information Technology</div>
+          <div class="edu-inst">SCDL · Pune, India</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-deg">BCA — Bachelor of Computer Applications</div>
+          <div class="edu-inst">Kakatiya University · Telangana, India</div>
+        </div>
+      </div>
+      <div>
+        <div class="edu-head">Professional Certifications</div>
+        <div class="cert-item">
+          <div class="cert-name">Certified Software Architecture Professional (SAP)</div>
+          <div class="cert-inst">Software Engineering Institute (SEI) · Carnegie Mellon University</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-name">Executive Programme in Algorithmic Trading (EPAT)</div>
+          <div class="cert-inst">QuantInsti</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-sec" id="contact">
+  <div class="container">
+    <div class="sec-label">Get In Touch</div>
+    <h2 class="sec-title">Let's <em>connect</em></h2>
+    <div class="contact-inner">
+      <div class="contact-text">
+        <p class="contact-sub">Open to senior architecture roles, advisory positions, and consulting engagements in fintech, payments, cloud modernization, or AI integration at enterprise scale.</p>
+        <div class="contact-links">
+          <a href="https://www.linkedin.com/in/abhinavtaduka/" target="_blank" class="cl">
+            <span>LinkedIn</span><span class="cl-arrow">↗</span>
+          </a>
+          <a href="https://medium.com/@abhinav.neo" target="_blank" class="cl">
+            <span>Medium Blog</span><span class="cl-arrow">↗</span>
+          </a>
+          <a href="mailto:abhinav.taduka@gmail.com" class="cl">
+            <span>abhinav.taduka@gmail.com</span><span class="cl-arrow">→</span>
+          </a>
+          <a href="tel:+14014999188" class="cl">
+            <span>+1 (401) 499 9188</span><span class="cl-arrow">→</span>
+          </a>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-label">Available for opportunities</div>
+        <div class="contact-card-name">Abhinav Taduka</div>
+        <div class="contact-card-title">Senior Architect &amp; Platform Leader<br>Fintech · Payments · Government · Cloud · AI</div>
+        <div class="contact-detail">
+          <div class="cd-row"><span class="cd-icon">📍</span><span>McKinney, Texas, United States</span></div>
+          <div class="cd-row"><span class="cd-icon">🎓</span><span>SEI / CMU Certified Software Architect</span></div>
+          <div class="cd-row"><span class="cd-icon">✍️</span><span>Published author · medium.com/@abhinav.neo</span></div>
+          <div class="cd-row"><span class="cd-icon">👥</span><span>1,000+ LinkedIn followers · 500+ connections</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="fc">© 2025 Abhinav Taduka · McKinney, Texas</span>
+  <span class="fb">SEI / CMU Certified Software Architecture Professional</span>
+</footer>
+
+</body>
+</html>
