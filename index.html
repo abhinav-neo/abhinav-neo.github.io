@@ -426,6 +426,12 @@ section { padding: 6rem 0; border-top: 1px solid var(--border); }
   display: flex; align-items: center; justify-content: center;
   font-size: 1rem; background: var(--gold-glow);
 }
+a.proj-card { text-decoration: none; }
+.proj-status {
+  font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.2rem 0.55rem; border: 1px solid var(--border); color: var(--text-3);
+}
+.proj-status.live { color: var(--teal); border-color: rgba(58,138,130,0.35); background: var(--teal-dim); }
 .proj-name { font-size: 0.93rem; font-weight: 600; color: var(--text-1); }
 .proj-sub { font-size: 0.79rem; color: var(--text-2); line-height: 1.75; }
 .proj-stack { display: flex; flex-wrap: wrap; gap: 0.3rem; }
@@ -584,11 +590,11 @@ footer {
     </h1>
     <div class="hero-divider"></div>
     <p class="hero-title">
-      Two decades architecting <strong>mission-critical distributed systems</strong> across fintech, payments, and government — from statewide healthcare exchanges to high-throughput financial processing platforms.
+      Over two decades architecting <strong>mission-critical distributed systems</strong> across fintech, payments, and government — from statewide healthcare exchanges to high-throughput financial processing platforms.
     </p>
     <div class="hero-stats">
       <div class="hstat">
-        <span class="hstat-n">21+</span>
+        <span class="hstat-n">23+</span>
         <span class="hstat-l">Years</span>
       </div>
       <div class="hstat">
@@ -596,8 +602,8 @@ footer {
         <span class="hstat-l">Orgs</span>
       </div>
       <div class="hstat">
-        <span class="hstat-n">1k+</span>
-        <span class="hstat-l">Followers</span>
+        <span class="hstat-n">14+</span>
+        <span class="hstat-l">State Agencies</span>
       </div>
       <div class="hstat">
         <span class="hstat-n">2</span>
@@ -607,6 +613,7 @@ footer {
     <div class="hero-ctas">
       <a href="https://www.linkedin.com/in/abhinavtaduka/" target="_blank" class="btn btn-gold">LinkedIn Profile →</a>
       <a href="https://medium.com/@abhinav.neo" target="_blank" class="btn btn-ghost">Read Writing</a>
+      <a href="https://github.com/abhinav-neo" target="_blank" class="btn btn-ghost">GitHub</a>
     </div>
   </div>
 
@@ -621,7 +628,7 @@ footer {
     </div>
     <div class="hero-card">
       <div class="hero-card-label">Certifications</div>
-      <div class="hero-card-val">Certified Software Architecture Professional (SAP)<br><em>SEI · Carnegie Mellon University</em></div>
+      <div class="hero-card-val">Certified Software Architecture Professional (CSAP)<br><em>SEI · Carnegie Mellon University</em></div>
     </div>
     <div class="hero-card">
       <div class="hero-card-label">Academic Credential</div>
@@ -965,46 +972,46 @@ footer {
     <div class="sec-label">Open Source Portfolio</div>
     <h2 class="sec-title">GitHub <em>projects</em></h2>
     <div class="proj-grid">
-      <div class="proj-card" data-n="01">
-        <div class="proj-hdr"><span class="proj-num">01 / 06</span><span class="proj-icon">🔍</span></div>
+      <a href="https://github.com/abhinav-neo/secureai" target="_blank" class="proj-card" data-n="01">
+        <div class="proj-hdr"><span class="proj-num">01 / 06 &nbsp;<span class="proj-status live">Live · GitHub ↗</span></span><span class="proj-icon">🛡️</span></div>
+        <div class="proj-name">SecureAI — Compliance LLM Middleware</div>
+        <div class="proj-sub">LLM middleware with PII detection, prompt injection defense, GDPR/SOC2 audit trails, and data residency routing, built on Spring Security's filter chain for regulated environments.</div>
+        <div class="proj-stack"><span class="ptag">Java</span><span class="ptag">Spring Security</span><span class="ptag">ONNX</span><span class="ptag">Elasticsearch</span></div>
+        <div class="proj-impact">20+ years of regulated-systems expertise applied to AI security</div>
+      </a>
+      <div class="proj-card" data-n="02">
+        <div class="proj-hdr"><span class="proj-num">02 / 06 &nbsp;<span class="proj-status">In development</span></span><span class="proj-icon">🔍</span></div>
         <div class="proj-name">JavaRAG — Enterprise RAG Engine</div>
-        <div class="proj-sub">Production-grade Retrieval-Augmented Generation built entirely in Java/Spring Boot with pgvector. No Python dependency — first Java-native RAG system for enterprise document QA.</div>
+        <div class="proj-sub">Retrieval-Augmented Generation engine for enterprise document QA, built in Java/Spring Boot with pgvector and no Python runtime dependency.</div>
         <div class="proj-stack"><span class="ptag">Java</span><span class="ptag">Spring Boot</span><span class="ptag">pgvector</span><span class="ptag">OpenAI API</span></div>
         <div class="proj-impact">Bridges enterprise Java infrastructure with production LLM capabilities</div>
       </div>
-      <div class="proj-card" data-n="02">
-        <div class="proj-hdr"><span class="proj-num">02 / 06</span><span class="proj-icon">⚡</span></div>
-        <div class="proj-name">LLM-Gateway — Java LLM Router</div>
-        <div class="proj-sub">Unified Java API gateway routing and load balancing across 5+ LLM providers. Semantic Redis caching, circuit breakers via Resilience4j, and enterprise-grade compliance audit logs.</div>
-        <div class="proj-stack"><span class="ptag">Java</span><span class="ptag">Spring Cloud Gateway</span><span class="ptag">Redis</span><span class="ptag">Resilience4j</span></div>
-        <div class="proj-impact">Enterprise-grade LLM infrastructure — zero Python dependency</div>
-      </div>
       <div class="proj-card" data-n="03">
-        <div class="proj-hdr"><span class="proj-num">03 / 06</span><span class="proj-icon">🛡️</span></div>
-        <div class="proj-name">SecureAI — Compliance LLM Middleware</div>
-        <div class="proj-sub">LLM middleware with PII detection, prompt injection defense, GDPR/SOC2 audit trails, and data residency routing — built on Spring Security's filter chain for regulated environments.</div>
-        <div class="proj-stack"><span class="ptag">Java</span><span class="ptag">Spring Security</span><span class="ptag">ONNX</span><span class="ptag">Elasticsearch</span></div>
-        <div class="proj-impact">20+ years of regulated-systems expertise applied to AI security</div>
+        <div class="proj-hdr"><span class="proj-num">03 / 06 &nbsp;<span class="proj-status">In development</span></span><span class="proj-icon">⚡</span></div>
+        <div class="proj-name">LLM-Gateway — Java LLM Router</div>
+        <div class="proj-sub">Java API gateway designed to route and load-balance across multiple LLM providers, with semantic Redis caching, Resilience4j circuit breakers, and compliance audit logs.</div>
+        <div class="proj-stack"><span class="ptag">Java</span><span class="ptag">Spring Cloud Gateway</span><span class="ptag">Redis</span><span class="ptag">Resilience4j</span></div>
+        <div class="proj-impact">Enterprise-grade LLM infrastructure on the JVM</div>
       </div>
       <div class="proj-card" data-n="04">
-        <div class="proj-hdr"><span class="proj-num">04 / 06</span><span class="proj-icon">💳</span></div>
+        <div class="proj-hdr"><span class="proj-num">04 / 06 &nbsp;<span class="proj-status">In development</span></span><span class="proj-icon">💳</span></div>
         <div class="proj-name">PaymentMesh — Intelligent Payment Router</div>
-        <div class="proj-sub">AI-augmented payment routing engine using ML to optimize rail selection, detect fraud in real time, and auto-remediate failed transactions — fintech-grade compliance built in.</div>
+        <div class="proj-sub">AI-augmented payment routing engine designed to optimize rail selection, flag fraud, and auto-remediate failed transactions, with fintech-grade compliance built in.</div>
         <div class="proj-stack"><span class="ptag">Java</span><span class="ptag">Kafka</span><span class="ptag">ONNX</span><span class="ptag">ACH / ISO 8583</span></div>
         <div class="proj-impact">Extends iCreditWorks payment architecture expertise to open source</div>
       </div>
       <div class="proj-card" data-n="05">
-        <div class="proj-hdr"><span class="proj-num">05 / 06</span><span class="proj-icon">🌊</span></div>
+        <div class="proj-hdr"><span class="proj-num">05 / 06 &nbsp;<span class="proj-status">In development</span></span><span class="proj-icon">🌊</span></div>
         <div class="proj-name">StreamIntel — Real-Time Event AI</div>
-        <div class="proj-sub">Kafka + LLM pipeline for real-time anomaly detection and natural-language alerting on high-throughput event streams. Handles 500k events/sec with sub-200ms alert latency.</div>
+        <div class="proj-sub">Kafka + LLM pipeline for real-time anomaly detection and natural-language alerting on high-throughput event streams.</div>
         <div class="proj-stack"><span class="ptag">Java</span><span class="ptag">Kafka</span><span class="ptag">Spring Kafka</span><span class="ptag">Prometheus</span></div>
         <div class="proj-impact">Production observability meets AI-driven incident intelligence</div>
       </div>
       <div class="proj-card" data-n="06">
-        <div class="proj-hdr"><span class="proj-num">06 / 06</span><span class="proj-icon">🏛️</span></div>
+        <div class="proj-hdr"><span class="proj-num">06 / 06 &nbsp;<span class="proj-status">In development</span></span><span class="proj-icon">🏛️</span></div>
         <div class="proj-name">ArchitectBench — Design Evaluator</div>
-        <div class="proj-sub">AI-powered tool evaluating software architecture documents across 12 quality dimensions — scalability, fault tolerance, security, cost, and more — powered by structured domain expertise.</div>
-        <div class="proj-stack"><span class="ptag">Java</span><span class="ptag">Spring Boot</span><span class="ptag">GPT-4</span><span class="ptag">PlantUML</span></div>
+        <div class="proj-sub">AI-assisted tool for evaluating software architecture documents across quality dimensions such as scalability, fault tolerance, security, and cost.</div>
+        <div class="proj-stack"><span class="ptag">Java</span><span class="ptag">Spring Boot</span><span class="ptag">LLM APIs</span><span class="ptag">PlantUML</span></div>
         <div class="proj-impact">Enterprise architecture expertise encoded as a reusable scoring engine</div>
       </div>
     </div>
@@ -1035,7 +1042,7 @@ footer {
       <div>
         <div class="edu-head">Professional Certifications</div>
         <div class="cert-item">
-          <div class="cert-name">Certified Software Architecture Professional (SAP)</div>
+          <div class="cert-name">Certified Software Architecture Professional (CSAP)</div>
           <div class="cert-inst">Software Engineering Institute (SEI) · Carnegie Mellon University</div>
         </div>
         <div class="cert-item">
@@ -1062,6 +1069,9 @@ footer {
           <a href="https://medium.com/@abhinav.neo" target="_blank" class="cl">
             <span>Medium Blog</span><span class="cl-arrow">↗</span>
           </a>
+          <a href="https://github.com/abhinav-neo" target="_blank" class="cl">
+            <span>GitHub</span><span class="cl-arrow">↗</span>
+          </a>
           <a href="mailto:abhinav.taduka@gmail.com" class="cl">
             <span>abhinav.taduka@gmail.com</span><span class="cl-arrow">→</span>
           </a>
@@ -1086,7 +1096,7 @@ footer {
 </section>
 
 <footer>
-  <span class="fc">© 2025 Abhinav Taduka · McKinney, Texas</span>
+  <span class="fc">© 2026 Abhinav Taduka · McKinney, Texas</span>
   <span class="fb">SEI / CMU Certified Software Architecture Professional</span>
 </footer>
 
