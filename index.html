@@ -108,6 +108,31 @@ nav {
   background: var(--teal); animation: shimmer 2s ease infinite;
 }
 
+.nav-right { display: flex; align-items: center; gap: 1.5rem; }
+.gh-mark { width: 14px; height: 14px; flex: none; }
+.nav-gh {
+  display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none;
+  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--gold); border: 1px solid var(--border-gold); padding: 0.5rem 0.85rem;
+  transition: background .2s, color .2s;
+}
+.nav-gh:hover { background: var(--gold); color: var(--bg-base); }
+.btn-gh { background: transparent; color: var(--gold); border: 1px solid var(--gold); }
+.btn-gh:hover { background: var(--gold-glow); color: var(--gold-bright); transform: translateY(-2px); }
+.btn-gh .gh-mark { width: 15px; height: 15px; }
+.hero-gh { border-color: var(--border-gold); background: linear-gradient(135deg, var(--gold-glow), var(--bg-2) 60%); }
+.hero-gh-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; text-decoration: none; }
+.hero-gh-head .hero-card-label { display: inline-flex; align-items: center; gap: 0.45rem; }
+.hero-gh-all { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.1em; color: var(--text-2); white-space: nowrap; }
+.hero-gh-head:hover .hero-gh-all { color: var(--gold); }
+.gh-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.85rem; }
+.gh-chip {
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.04em; text-decoration: none;
+  color: var(--text-1); border: 1px solid var(--border); padding: 0.3rem 0.6rem;
+  transition: border-color .2s, color .2s;
+}
+.gh-chip:hover { border-color: var(--gold); color: var(--gold); }
+
 /* ── HERO ── */
 .hero {
   min-height: 100vh;
@@ -563,6 +588,9 @@ footer {
   .hero-right { border-left: none; border-top: 1px solid var(--border); min-height: auto; }
   nav { padding: 0 1.5rem; }
   .nav-links { display: none; }
+  .nav-gh span { display: none; }
+  .nav-right { gap: 1rem; }
+  .hero-ctas { flex-wrap: wrap; }
   .hero-left { padding: 4rem 1.5rem; }
   .container { padding: 0 1.5rem; }
   .expertise-grid, .pub-grid, .tech-grid, .proj-grid, .edu-grid { grid-template-columns: 1fr; }
@@ -590,7 +618,10 @@ footer {
     <li><a href="#projects">Projects</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <div class="nav-status">Available for senior roles</div>
+  <div class="nav-right">
+    <a class="nav-gh" href="https://github.com/JavaToAILab" target="_blank" rel="noopener" aria-label="Open-source projects on GitHub"><svg class="gh-mark" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg><span>GitHub</span></a>
+    <div class="nav-status">Available for senior roles</div>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -629,11 +660,26 @@ footer {
     <div class="hero-ctas">
       <a href="https://www.linkedin.com/in/abhinavtaduka/" target="_blank" class="btn btn-gold">LinkedIn Profile →</a>
       <a href="https://medium.com/@abhinav.neo" target="_blank" class="btn btn-ghost">Read Writing</a>
-      <a href="https://github.com/abhinav-neo" target="_blank" class="btn btn-ghost">GitHub</a>
+      <a href="https://github.com/JavaToAILab" target="_blank" rel="noopener" class="btn btn-gh"><svg class="gh-mark" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub · 6 projects ↗</a>
     </div>
   </div>
 
   <div class="hero-right">
+    <div class="hero-card hero-gh">
+      <a class="hero-gh-head" href="https://github.com/JavaToAILab" target="_blank" rel="noopener">
+        <span class="hero-card-label"><svg class="gh-mark" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>Open source · JavaToAILab</span>
+        <span class="hero-gh-all">View on GitHub ↗</span>
+      </a>
+      <div class="hero-card-val">6 Java + AI systems: code, tests and CI, built in the open</div>
+      <div class="gh-chips">
+        <a href="https://github.com/JavaToAILab/secureai" target="_blank" rel="noopener" class="gh-chip">SecureAI</a>
+        <a href="https://github.com/JavaToAILab/javarag" target="_blank" rel="noopener" class="gh-chip">JavaRAG</a>
+        <a href="https://github.com/JavaToAILab/llm-gateway" target="_blank" rel="noopener" class="gh-chip">LLM-Gateway</a>
+        <a href="https://github.com/JavaToAILab/paymentmesh" target="_blank" rel="noopener" class="gh-chip">PaymentMesh</a>
+        <a href="https://github.com/JavaToAILab/streamintel" target="_blank" rel="noopener" class="gh-chip">StreamIntel</a>
+        <a href="https://github.com/JavaToAILab/architectbench" target="_blank" rel="noopener" class="gh-chip">ArchitectBench</a>
+      </div>
+    </div>
     <div class="hero-card">
       <div class="hero-card-label">Current Position</div>
       <div class="hero-card-val">Senior Architect, Lead — Operations Technology<br><em>iCreditWorks · Aug 2021 – Present · McKinney, TX</em></div>
@@ -1145,7 +1191,7 @@ footer {
           <a href="https://medium.com/@abhinav.neo" target="_blank" class="cl">
             <span>Medium Blog</span><span class="cl-arrow">↗</span>
           </a>
-          <a href="https://github.com/abhinav-neo" target="_blank" class="cl">
+          <a href="https://github.com/JavaToAILab" target="_blank" class="cl">
             <span>GitHub</span><span class="cl-arrow">↗</span>
           </a>
           <a href="mailto:abhinav.taduka@gmail.com" class="cl">
