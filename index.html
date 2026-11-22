@@ -379,6 +379,22 @@ section { padding: 6rem 0; border-top: 1px solid var(--border); }
 .pub-arrow { color: var(--text-3); font-size: 1rem; transition: color 0.2s, transform 0.2s; }
 .pub-card:hover .pub-arrow { color: var(--gold); transform: translate(3px,-3px); }
 
+.pub-nav { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: -1.5rem 0 3rem; }
+.pub-chip {
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-2); text-decoration: none; padding: 0.45rem 0.9rem;
+  border: 1px solid var(--border); transition: border-color 0.2s, color 0.2s;
+}
+.pub-chip span { color: var(--gold); margin-left: 0.35rem; }
+.pub-chip:hover { border-color: var(--border-gold); color: var(--gold); }
+.pub-group { margin-bottom: 3.5rem; scroll-margin-top: 5rem; }
+.pub-group:last-child { margin-bottom: 0; }
+.pub-group-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
+  border-bottom: 1px solid var(--border-gold); padding-bottom: 0.6rem; margin-bottom: 0.6rem; }
+.pub-group-title { font-family: var(--serif); font-weight: 400; font-size: 1.5rem; color: var(--text-1); }
+.pub-group-count { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-3); }
+.pub-group-desc { font-size: 0.9rem; color: var(--text-2); margin-bottom: 1.5rem; }
+
 /* ── TECH STACK ── */
 .tech-sec { background: var(--bg-base); }
 .tech-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
@@ -845,21 +861,20 @@ footer {
   <div class="container">
     <div class="sec-label">Published on Medium</div>
     <h2 class="sec-title">Thoughts on <em>craft</em></h2>
-    <div class="pub-grid">
-      <a href="https://medium.com/@abhinav.neo/pairs-trading-held-a-beta-of-0-02-for-27-years-choosing-the-pairs-added-nothing-2dbce6e45092" target="_blank" class="pub-card">
-        <div class="pub-date">Nov 2026</div>
-        <div class="pub-title">Pairs Trading Held a Beta of 0.02 for 27 Years. Choosing the Pairs Added Nothing.</div>
-        <div class="pub-footer"><span class="pub-tag">Quant &middot; Backtesting</span><span class="pub-arrow">&#8599;</span></div>
-      </a>
-      <a href="https://medium.com/@abhinav.neo/rsi-2-wins-72-of-its-trades-more-than-half-of-what-it-earns-is-t-bill-interest-2ef8196443bb" target="_blank" class="pub-card">
-        <div class="pub-date">Nov 2026</div>
-        <div class="pub-title">RSI(2) Wins 72% of Its Trades. More Than Half of What It Earns Is T-Bill Interest.</div>
-        <div class="pub-footer"><span class="pub-tag">Quant &middot; Backtesting</span><span class="pub-arrow">&#8599;</span></div>
-      </a>      <a href="https://medium.com/@abhinav.neo/is-ach-really-outdated-in-the-age-of-ai-5b695c62c551" target="_blank" class="pub-card">
-        <div class="pub-date">Nov 2026</div>
-        <div class="pub-title">Is ACH Really Outdated in the Age of AI?</div>
-        <div class="pub-footer"><span class="pub-tag">Payments · AI · Fintech</span><span class="pub-arrow">↗</span></div>
-      </a>
+    <nav class="pub-nav" aria-label="Writing categories">
+      <a href="#writing-java-ai" class="pub-chip">Java to AI <span>8</span></a>
+      <a href="#writing-quant" class="pub-chip">Quant Strategy Lab <span>5</span></a>
+      <a href="#writing-ai-engineering" class="pub-chip">AI &amp; Engineering Practice <span>2</span></a>
+      <a href="#writing-fintech-cloud" class="pub-chip">Fintech &amp; Cloud Architecture <span>2</span></a>
+    </nav>
+
+    <div class="pub-group" id="writing-java-ai">
+      <div class="pub-group-head">
+        <h3 class="pub-group-title">Java to AI</h3>
+        <span class="pub-group-count">8 articles</span>
+      </div>
+      <p class="pub-group-desc">Building production AI on the JVM: the Java to AI series and Java's place in the ML stack.</p>
+      <div class="pub-grid">
       <a href="https://medium.com/@abhinav.neo/tokens-and-context-windows-as-capacity-planning-1626d8652014" target="_blank" class="pub-card">
         <div class="pub-date">Nov 2026</div>
         <div class="pub-title">Tokens and Context Windows as Capacity Planning</div>
@@ -869,11 +884,6 @@ footer {
         <div class="pub-date">Oct 2026</div>
         <div class="pub-title">Meet IncidentPilot: An LLM Is a Non-Deterministic Dependency</div>
         <div class="pub-footer"><span class="pub-tag">LLM · Java · DevOps</span><span class="pub-arrow">↗</span></div>
-      </a>
-      <a href="https://medium.com/@abhinav.neo/the-turtle-traders-rule-dodged-the-covid-crash-it-also-turned-1-into-8-instead-of-70-2174ad4e7d5c" target="_blank" class="pub-card">
-        <div class="pub-date">Oct 2026</div>
-        <div class="pub-title">The Turtle Traders' Rule Dodged the COVID Crash. It Also Turned $1 into $8 Instead of $70.</div>
-        <div class="pub-footer"><span class="pub-tag">Quant · Backtesting</span><span class="pub-arrow">↗</span></div>
       </a>
       <a href="https://medium.com/@abhinav.neo/your-first-llm-call-from-java-written-like-production-code-bfc809df2a61" target="_blank" class="pub-card">
         <div class="pub-date">Oct 2026</div>
@@ -890,31 +900,6 @@ footer {
         <div class="pub-title">An Enterprise Java Architect Starts Over With AI</div>
         <div class="pub-footer"><span class="pub-tag">Java · AI · Career</span><span class="pub-arrow">↗</span></div>
       </a>
-      <a href="https://medium.com/@abhinav.neo/the-10-month-moving-average-is-the-most-famous-rule-in-tactical-investing-bb1be03b679c" target="_blank" class="pub-card">
-        <div class="pub-date">Oct 2026</div>
-        <div class="pub-title">The 10-Month Moving Average Is the Most Famous Rule in Tactical Investing. I Tested It for 40 Years.</div>
-        <div class="pub-footer"><span class="pub-tag">Quant · Backtesting</span><span class="pub-arrow">↗</span></div>
-      </a>
-      <a href="https://medium.com/@abhinav.neo/i-backtested-dual-momentum-for-29-years-it-stopped-working-the-year-the-book-came-out-f6a1c4f76553" target="_blank" class="pub-card">
-        <div class="pub-date">Oct 2026</div>
-        <div class="pub-title">I Backtested Dual Momentum for 29 Years — It Stopped Working the Year the Book Came Out</div>
-        <div class="pub-footer"><span class="pub-tag">Quant · Backtesting</span><span class="pub-arrow">↗</span></div>
-      </a>
-      <a href="https://medium.com/@abhinav.neo/what-standards-matter-in-the-age-of-ai-assisted-development-fc9f52f9dc41" target="_blank" class="pub-card">
-        <div class="pub-date">Feb 2025</div>
-        <div class="pub-title">What standards matter in the age of AI-assisted development?</div>
-        <div class="pub-footer"><span class="pub-tag">AI · Standards</span><span class="pub-arrow">↗</span></div>
-      </a>
-      <a href="https://medium.com/@abhinav.neo/python-is-the-most-popular-language-for-ai-but-mostly-where-ai-is-born-not-where-it-lives-196140083ea7" target="_blank" class="pub-card">
-        <div class="pub-date">Feb 2025</div>
-        <div class="pub-title">Python Is Popular for AI — But Mostly Where AI Is Born, Not Where It Lives</div>
-        <div class="pub-footer"><span class="pub-tag">Java · AI · Production</span><span class="pub-arrow">↗</span></div>
-      </a>
-      <a href="https://medium.com/@abhinav.neo/is-ai-actually-making-software-developers-better-23fd9e56492d" target="_blank" class="pub-card">
-        <div class="pub-date">Feb 2025</div>
-        <div class="pub-title">Is AI Actually Making Software Developers Better?</div>
-        <div class="pub-footer"><span class="pub-tag">AI · Engineering</span><span class="pub-arrow">↗</span></div>
-      </a>
       <a href="https://medium.com/@abhinav.neo/exploring-java-in-ai-and-machine-learning-a-comprehensive-overview-fc89ae968893" target="_blank" class="pub-card">
         <div class="pub-date">Mar 2025</div>
         <div class="pub-title">Exploring Java in AI and Machine Learning: A Comprehensive Overview</div>
@@ -925,12 +910,89 @@ footer {
         <div class="pub-title">DeepLearning4J: Comprehensive Overview for JVM Practitioners</div>
         <div class="pub-footer"><span class="pub-tag">DL4J · Deep Learning</span><span class="pub-arrow">↗</span></div>
       </a>
+      <a href="https://medium.com/@abhinav.neo/python-is-the-most-popular-language-for-ai-but-mostly-where-ai-is-born-not-where-it-lives-196140083ea7" target="_blank" class="pub-card">
+        <div class="pub-date">Feb 2025</div>
+        <div class="pub-title">Python Is Popular for AI — But Mostly Where AI Is Born, Not Where It Lives</div>
+        <div class="pub-footer"><span class="pub-tag">Java · AI · Production</span><span class="pub-arrow">↗</span></div>
+      </a>
+      </div>
+    </div>
+
+    <div class="pub-group" id="writing-quant">
+      <div class="pub-group-head">
+        <h3 class="pub-group-title">Quant Strategy Lab</h3>
+        <span class="pub-group-count">5 articles</span>
+      </div>
+      <p class="pub-group-desc">Classic trading rules backtested over decades, with the uncomfortable numbers left in.</p>
+      <div class="pub-grid">
+      <a href="https://medium.com/@abhinav.neo/pairs-trading-held-a-beta-of-0-02-for-27-years-choosing-the-pairs-added-nothing-2dbce6e45092" target="_blank" class="pub-card">
+        <div class="pub-date">Nov 2026</div>
+        <div class="pub-title">Pairs Trading Held a Beta of 0.02 for 27 Years. Choosing the Pairs Added Nothing.</div>
+        <div class="pub-footer"><span class="pub-tag">Quant &middot; Backtesting</span><span class="pub-arrow">&#8599;</span></div>
+      </a>
+      <a href="https://medium.com/@abhinav.neo/rsi-2-wins-72-of-its-trades-more-than-half-of-what-it-earns-is-t-bill-interest-2ef8196443bb" target="_blank" class="pub-card">
+        <div class="pub-date">Nov 2026</div>
+        <div class="pub-title">RSI(2) Wins 72% of Its Trades. More Than Half of What It Earns Is T-Bill Interest.</div>
+        <div class="pub-footer"><span class="pub-tag">Quant &middot; Backtesting</span><span class="pub-arrow">&#8599;</span></div>
+      </a>
+      <a href="https://medium.com/@abhinav.neo/the-turtle-traders-rule-dodged-the-covid-crash-it-also-turned-1-into-8-instead-of-70-2174ad4e7d5c" target="_blank" class="pub-card">
+        <div class="pub-date">Oct 2026</div>
+        <div class="pub-title">The Turtle Traders' Rule Dodged the COVID Crash. It Also Turned $1 into $8 Instead of $70.</div>
+        <div class="pub-footer"><span class="pub-tag">Quant · Backtesting</span><span class="pub-arrow">↗</span></div>
+      </a>
+      <a href="https://medium.com/@abhinav.neo/the-10-month-moving-average-is-the-most-famous-rule-in-tactical-investing-bb1be03b679c" target="_blank" class="pub-card">
+        <div class="pub-date">Oct 2026</div>
+        <div class="pub-title">The 10-Month Moving Average Is the Most Famous Rule in Tactical Investing. I Tested It for 40 Years.</div>
+        <div class="pub-footer"><span class="pub-tag">Quant · Backtesting</span><span class="pub-arrow">↗</span></div>
+      </a>
+      <a href="https://medium.com/@abhinav.neo/i-backtested-dual-momentum-for-29-years-it-stopped-working-the-year-the-book-came-out-f6a1c4f76553" target="_blank" class="pub-card">
+        <div class="pub-date">Oct 2026</div>
+        <div class="pub-title">I Backtested Dual Momentum for 29 Years — It Stopped Working the Year the Book Came Out</div>
+        <div class="pub-footer"><span class="pub-tag">Quant · Backtesting</span><span class="pub-arrow">↗</span></div>
+      </a>
+      </div>
+    </div>
+
+    <div class="pub-group" id="writing-ai-engineering">
+      <div class="pub-group-head">
+        <h3 class="pub-group-title">AI &amp; Engineering Practice</h3>
+        <span class="pub-group-count">2 articles</span>
+      </div>
+      <p class="pub-group-desc">How AI assistance is changing the way software gets built.</p>
+      <div class="pub-grid">
+      <a href="https://medium.com/@abhinav.neo/what-standards-matter-in-the-age-of-ai-assisted-development-fc9f52f9dc41" target="_blank" class="pub-card">
+        <div class="pub-date">Feb 2025</div>
+        <div class="pub-title">What standards matter in the age of AI-assisted development?</div>
+        <div class="pub-footer"><span class="pub-tag">AI · Standards</span><span class="pub-arrow">↗</span></div>
+      </a>
+      <a href="https://medium.com/@abhinav.neo/is-ai-actually-making-software-developers-better-23fd9e56492d" target="_blank" class="pub-card">
+        <div class="pub-date">Feb 2025</div>
+        <div class="pub-title">Is AI Actually Making Software Developers Better?</div>
+        <div class="pub-footer"><span class="pub-tag">AI · Engineering</span><span class="pub-arrow">↗</span></div>
+      </a>
+      </div>
+    </div>
+
+    <div class="pub-group" id="writing-fintech-cloud">
+      <div class="pub-group-head">
+        <h3 class="pub-group-title">Fintech &amp; Cloud Architecture</h3>
+        <span class="pub-group-count">2 articles</span>
+      </div>
+      <p class="pub-group-desc">Payments rails and platform modernisation from the enterprise trenches.</p>
+      <div class="pub-grid">
+      <a href="https://medium.com/@abhinav.neo/is-ach-really-outdated-in-the-age-of-ai-5b695c62c551" target="_blank" class="pub-card">
+        <div class="pub-date">Nov 2026</div>
+        <div class="pub-title">Is ACH Really Outdated in the Age of AI?</div>
+        <div class="pub-footer"><span class="pub-tag">Payments · AI · Fintech</span><span class="pub-arrow">↗</span></div>
+      </a>
       <a href="https://medium.com/@abhinav.neo/key-factors-in-migrating-from-on-premise-to-cloud-step-1-assess-your-current-application-e41777523a1f" target="_blank" class="pub-card">
         <div class="pub-date">Apr 2023</div>
         <div class="pub-title">Key Factors in Migrating from On-Premise to Cloud — Step 1: Assess Your Application</div>
         <div class="pub-footer"><span class="pub-tag">Cloud · Migration</span><span class="pub-arrow">↗</span></div>
       </a>
+      </div>
     </div>
+
   </div>
 </section>
 
